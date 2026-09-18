@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1520">
+<title>MeasureLoom</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#dfe7ea;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17242d}.app{max-width:480px;min-height:100vh;margin:auto;background:#f4f7f8}.top{background:#fff;padding:18px;border-bottom:1px solid #dce4e7;position:sticky;top:0;z-index:5}.brand{font-size:24px;font-weight:900}.mark{border:3px solid #17242d;padding:0 5px;margin-right:5px}.blue{color:#1687d0}.tag{font-size:10px;color:#6b7880}.screen{padding:20px 16px 100px}.hide{display:none}h1{font-size:29px;margin:0 0 5px}h2{font-size:20px}.muted{color:#6b7880;font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.tile,.card{background:#fff;border:1px solid #dce4e7;border-radius:16px;padding:15px}.tile{text-align:left;min-height:110px}.tile b{display:block;margin:9px 0 4px}.tile small{color:#6b7880}.card{margin:12px 0}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.pill{background:#e7f1f2;color:#167276;border-radius:20px;padding:6px 9px;font-size:10px;font-weight:800}.btn{width:100%;border:0;border-radius:11px;background:#167276;color:#fff;padding:13px;font-weight:800;margin:6px 0}.btn.alt{background:#e8eef0;color:#17242d}.back{border:0;background:none;color:#167276;font-weight:800;padding:0 0 10px}.field{margin:10px 0}.field label{display:block;font-size:10px;text-transform:uppercase;font-weight:900;color:#5d6a70;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #ccd8dc;border-radius:10px;background:#fff;padding:11px;font-size:15px}.field textarea{min-height:75px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.measure{background:#f0f4f5;border-radius:12px;padding:12px;margin:10px 0}.measure strong{font-size:13px}.measure input{font-size:18px}.line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e8edef;font-size:13px}.status{padding:10px;border-radius:10px;background:#f0f4f5;margin:8px 0;font-size:12px}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #dce4e7;display:flex;padding:8px 4px;z-index:10}.nav button{flex:1;border:0;background:none;color:#6b7880;font-size:10px}.nav button b{display:block;font-size:18px}.nav button.on{color:#167276;font-weight:900}.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#0b1520;color:#fff;padding:10px 15px;border-radius:10px;display:none;z-index:20}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+<div class="brand"><span class="mark">M</span>Measure<span class="blue">Loom</span></div>
+<div class="tag">Measure Smarter. Install Better.</div>
+</header>
+
+<section id="home" class="screen">
+<h1>Dashboard</h1>
+<div class="muted">Carlisle Blinds & Installations LLC</div>
+<div class="grid">
+<button class="tile" onclick="go('new')">📐<b>New Project</b><small>Start a measurement job</small></button>
+<button class="tile" onclick="go('projects')">🗂️<b>Projects</b><small>Open active jobs</small></button>
+<button class="tile" onclick="go('measure')">📏<b>Measure</b><small>Open measurement</small></button>
+<button class="tile" onclick="go('track')">🚚<b>Order Tracking</b><small>Shipments & deliveries</small></button>
+<button class="tile" onclick="go('estimate')">💰<b>Estimates</b><small>Quotes & approvals</small></button>
+<button class="tile" onclick="go('invoice')">🧾<b>Invoices</b><small>Balances & payments</small></button>
+</div>
+<div class="card">
+<div class="row"><b>Today's Work</b><span class="pill">3 active</span></div>
+<div class="line"><span>Smith Residence</span><b>Measure</b></div>
+<div class="line"><span>ABC Apartments</span><b>Install</b></div>
+<div class="line"><span>Jones Remodel</span><b>Estimate</b></div>
+</div>
+</section>
+
+<section id="projects" class="screen hide">
+<button class="back" onclick="go('home')">← Dashboard</button>
+<h1>Projects</h1>
+<button class="btn" onclick="go('new')">＋ New Project</button>
+<div class="card"><div class="row"><b>Smith Residence</b><span class="pill">15 openings</span></div><div class="muted">123 Main Street • Logan, UT</div><div class="status">Measure 80% complete</div><button class="btn alt" onclick="go('measure')">Open Measurement</button></div>
+<div class="card"><div class="row"><b>ABC Apartments</b><span class="pill">28 openings</span></div><div class="muted">Pullman, WA</div><div class="status">Ready for installation</div></div>
+</section>
+
+<section id="new" class="screen hide">
+<button class="back" onclick="go('projects')">← Projects</button>
+<h1>New Project</h1>
+<div class="card">
+<div class="field"><label>Customer</label><input id="customer" placeholder="Customer name"></div>
+<div class="field"><label>Job Address</label><input placeholder="Address"></div>
+<div class="field"><label>Job Number</label><input value="ML-1008"></div>
+<button class="btn" onclick="createProject()">Create Project</button>
+</div>
+</section>
+
+<section id="measure" class="screen hide">
+<button class="back" onclick="go('projects')">← Project</button>
+<div class="row"><h1>Opening 01</h1><span class="pill">Measure</span></div>
+<div class="muted">Smith Residence • Living Room</div>
+<div class="field"><label>Product</label>
+<select id="product" onchange="fields()">
+<option>Roller Shade</option><option>Zebra Shade</option><option>Vertical Blind</option><option>Sheer</option><option>Roman Shade</option><option>Cellular Shade</option><option>Wood Blind</option><option>Shutter</option><option>Drapery</option>
+</select></div>
+<div id="fields"></div>
+<div class="field"><label>Notes</label><textarea placeholder="Inside mount, trim, obstructions, special instructions..."></textarea></div>
+<button class="btn" onclick="toast('Measurement saved ✓')">Save Measurement</button>
+<button class="btn alt" onclick="go('drapery')">Drapery Measure</button>
+</section>
+
+<section id="drapery" class="screen hide">
+<button class="back" onclick="go('measure')">← Measurement</button>
+<h1>Drapery Measure</h1>
+<div class="card">
+<div class="field"><label>Ceiling → Top of Window</label><input placeholder="inches"></div>
+<div class="field"><label>Bottom of Window → Floor</label><input placeholder="inches"></div>
+<div class="field"><label>Window Width</label><input placeholder="inches"></div>
+<div class="field"><label>Window Height</label><input placeholder="inches"></div>
+<div class="two"><div class="field"><label>Left Obstruction</label><input placeholder="inches"></div><div class="field"><label>Right Obstruction</label><input placeholder="inches"></div></div>
+<div class="field"><label>Notes</label><textarea></textarea></div>
+<button class="btn" onclick="toast('Drapery measurement saved ✓')">Save Drapery Measure</button>
+</div>
+</section>
+
+<section id="track" class="screen hide">
+<button class="back" onclick="go('home')">← Dashboard</button>
+<h1>Order Tracking</h1>
+<button class="btn" onclick="toast('Tracking synced ✓')">↻ Sync Tracking</button>
+<div class="card"><div class="row"><b>Hunter Douglas</b><span class="pill">In Transit</span></div><div class="muted">Order HD-48291 • UPS</div><div class="status">Expected delivery: Sep 22</div><button class="btn alt" onclick="toast('Marked arrived ✓')">Mark Arrived</button></div>
+<div class="card"><div class="row"><b>Alta</b><span class="pill">Delivered</span></div><div class="muted">Order AL-19302 • FedEx</div><div class="status">Delivered Sep 16</div></div>
+</section>
+
+<section id="estimate" class="screen hide">
+<button class="back" onclick="go('home')">← Dashboard</button>
+<h1>Estimate</h1>
+<div class="muted">Smith Residence • ML-1008</div>
+<div class="card">
+<div class="line"><span>Standard shades × 15</span><b>$225</b></div>
+<div class="line"><span>Installation</span><b>$130</b></div>
+<div class="line"><span>Motorization</span><b>$75</b></div>
+<div class="line"><span>Subtotal</span><b>$430</b></div>
+<div class="line"><span>Deposit</span><b>$258</b></div>
+<button class="btn" onclick="toast('Estimate sent ✓')">Send Estimate</button>
+</div>
+</section>
+
+<section id="invoice" class="screen hide">
+<button class="back" onclick="go('home')">← Dashboard</button>
+<h1>Invoice</h1>
+<div class="card">
+<div class="row"><b>INV-1008</b><span class="pill">Balance Due</span></div>
+<div class="line"><span>Total</span><b>$430</b></div>
+<div class="line"><span>Deposit</span><b>$258</b></div>
+<div class="line"><span>Remaining</span><b>$172</b></div>
+<button class="btn" onclick="toast('Payment recorded ✓')">Record Payment</button>
+</div>
+</section>
+
+<nav class="nav">
+<button onclick="go('home')" id="n1"><b>⌂</b>Home</button>
+<button onclick="go('projects')" id="n2"><b>▣</b>Projects</button>
+<button onclick="go('measure')" id="n3"><b>📐</b>Measure</button>
+<button onclick="go('track')" id="n4"><b>🚚</b>Orders</button>
+<button onclick="go('estimate')" id="n5"><b>💵</b>Money</button>
+</nav>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const ids=['home','projects','new','measure','drapery','track','estimate','invoice'];
+function go(id){
+ ids.forEach(x=>document.getElementById(x).classList.toggle('hide',x!==id));
+ window.scrollTo(0,0);
+}
+function fields(){
+ const p=document.getElementById('product').value;
+ const topOnly=['Roller Shade','Zebra Shade','Vertical Blind','Sheer'].includes(p);
+ let w=topOnly?'<div class="field"><label>Width • Top</label><input inputmode="decimal" placeholder="inches"></div>':
+ '<div class="three">'+['Top','Middle','Bottom'].map(x=>'<div class="field"><label>Width • '+x+'</label><input inputmode="decimal" placeholder="in"></div>').join('')+'</div>';
+ let h='<div class="measure"><b>Height • Always Left / Center / Right</b><div class="three">'+['Left','Center','Right'].map(x=>'<div class="field"><label>'+x+'</label><input inputmode="decimal" placeholder="in"></div>').join('')+'</div></div>';
+ document.getElementById('fields').innerHTML=w+h;
+}
+function createProject(){toast('Project created ✓');setTimeout(()=>go('measure'),500)}
+function toast(s){let t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',1800)}
+go('home');fields();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name":"MeasureLoom",
+  "short_name":"MeasureLoom",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f4f7f8",
+  "theme_color":"#0b1520",
+  "description":"Measure Smarter. Install Better.",
+  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
